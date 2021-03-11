@@ -5,8 +5,8 @@ function get_timezone(dt)
   // then we execute the regex statement on a javascript date object thats been convert to string
   // date objects look like this: Thu Mar 11 2021 00:00:00 GMT-0500 (Eastern Standard Time)
   // and our timezone is conveniently enclosed in parenthesis
-  // so the regex gets that out, and i have no idea why we need to do the [1] part other
-  // than "regex is weird", but im not touching code thats working, so...
+  // so the regex gets that out, and the [1] part is needed otherwise our output
+  // would still have the parenthesis
   return /\((.*)\)/.exec(dt.toString())[1];
 }
 
