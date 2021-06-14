@@ -4,5 +4,7 @@
 // device will format the timezone
 
 dt = luxon.DateTime.now();
-var timezone = dt.offsetNameShort
+let timezone = dt.offsetNameShort
+let other_timezone = dt.zoneName
 document.getElementById("timezone_text").innerText = "Your time zone is: " + timezone
+document.getElementById("othername_text").innerText = "Otherwise known as: " + other_timezone
