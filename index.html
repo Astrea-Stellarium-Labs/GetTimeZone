@@ -11,7 +11,8 @@
       text-align: center;
       font-size: 70px;
     }
-	#othername_text {
+
+    #extra_text {
       font-family: tahoma, sans-serif;
       text-align: center;
       font-size: 30px;
@@ -21,7 +22,13 @@
 
 <body>
   <p id="timezone_text">Your time zone is: N/A</p>
-  <p id="othername_text">Otherwise known as: N/A</p>
+  <div id="extra_text">
+    <p id="fullname_text">Full name: N/A</p>
+    <p id="othername_text">
+      <a href="https://www.iana.org/time-zones" target="_blank">IANA</a>
+      name: N/A
+    </p>
+  </div>
   <script type="text/javascript" src="timezone.js"></script>
 </body>
 
