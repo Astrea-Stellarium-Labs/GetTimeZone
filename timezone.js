@@ -2,6 +2,15 @@
 // so what's here might not be amazing
 // but it should be fine
 
-dt = luxon.DateTime.now();
-document.getElementById("timezone_text").innerText = "Your time zone is: " + dt.offsetNameShort
-document.getElementById("othername_text").innerText = "Otherwise known as: " + dt.zoneName
+let date = Date.now();
+const dtFormat = new Intl.DateTimeFormat([], {"timeZoneName": "short"});
+
+const offsetNameFormat = dtFormat
+    .formatToParts(date)
+    .find((m) => m.type.toLowerCase() === "timezonename");
+
+const offsetName = offsetNameFormat.value;
+const zoneName = dtFormat.resolvedOptions().timeZone;
+
+document.getElementById("timezone_text").innerText = "Your time zone is: " + offsetName
+document.getElementById("othername_text").innerText = "Otherwise known as: " + zoneName
