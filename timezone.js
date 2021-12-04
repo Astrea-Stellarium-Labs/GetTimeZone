@@ -1,1 +1,23 @@
-let date=Date.now();const shortDTFormat=new Intl.DateTimeFormat([],{timeZoneName:"short"}),offsetNameFormat=shortDTFormat.formatToParts(date).find((e=>"timezonename"===e.type.toLowerCase())),offsetName=offsetNameFormat.value;document.getElementById("timezone_text").innerText="Your time zone is: "+offsetName;const longDTFormat=new Intl.DateTimeFormat([],{timeZoneName:"long"}),longOffsetNameFormat=longDTFormat.formatToParts(date).find((e=>"timezonename"===e.type.toLowerCase())),longOffsetName=longOffsetNameFormat.value;document.getElementById("fullname_text").innerText="Full name: "+longOffsetName;const zoneName=shortDTFormat.resolvedOptions().timeZone;var temp_link=document.createElement("a");temp_link.href="https://www.iana.org/time-zones",temp_link.target="_blank",temp_link.innerHTML="IANA",document.getElementById("othername_text").innerHTML=temp_link.outerHTML+" name: "+zoneName;
+// note that i'm not really a javascript programmer
+// so what's here might not be amazing
+// but it should be fine
+
+let date = Date.now();
+
+function getTimeZoneName(type) {
+    const DTFormat = new Intl.DateTimeFormat([], { "timeZoneName": type });
+    const offsetNameFormat = DTFormat
+        .formatToParts(date)
+        .find((m) => m.type === "timeZoneName");
+    return offsetNameFormat.value;
+}
+
+document.getElementById("timezone_text").innerText = "Your time zone is: " + getTimeZoneName("short")
+document.getElementById("fullname_text").innerText = "Full name: " + getTimeZoneName("long")
+
+const zoneName = new Intl.DateTimeFormat().resolvedOptions().timeZone;
+var temp_link = document.createElement("a");
+temp_link.href = "https://www.iana.org/time-zones";
+temp_link.innerHTML = "IANA";
+
+document.getElementById("othername_text").innerHTML = temp_link.outerHTML + " name: " + zoneName;
