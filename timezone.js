@@ -2,22 +2,20 @@
 // so what's here might not be amazing
 // but it should be fine
 
-let date = Date.now();
-
-function getTimeZoneName(type) {
+function getTZName(type) {
     const DTFormat = new Intl.DateTimeFormat([], { "timeZoneName": type });
-    const offsetNameFormat = DTFormat
-        .formatToParts(date)
+    const tzName = DTFormat
+        .formatToParts(Date.now())
         .find((m) => m.type === "timeZoneName");
-    return offsetNameFormat.value;
+    return tzName.value;
 }
 
-document.getElementById("timezone_text").innerText = "Your time zone is: " + getTimeZoneName("short")
-document.getElementById("fullname_text").innerText = "Full name: " + getTimeZoneName("long")
+document.getElementById("timezone").innerText = "Your time zone is: " + getTZName("short")
+document.getElementById("fullname").innerText = "Full name: " + getTZName("long")
 
-const zoneName = new Intl.DateTimeFormat().resolvedOptions().timeZone;
+const ianaName = new Intl.DateTimeFormat().resolvedOptions().timeZone;
 var temp_link = document.createElement("a");
 temp_link.href = "https://www.iana.org/time-zones";
 temp_link.innerHTML = "IANA";
 
-document.getElementById("othername_text").innerHTML = temp_link.outerHTML + " name: " + zoneName;
+document.getElementById("iananame").innerHTML = temp_link.outerHTML + " name: " + ianaName;
