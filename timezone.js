@@ -14,8 +14,4 @@ document.getElementById("timezone").innerText = "Your time zone is: " + getTZNam
 document.getElementById("fullname").innerText = "Full name: " + getTZName("long")
 
 const ianaName = new Intl.DateTimeFormat().resolvedOptions().timeZone;
-var temp_link = document.createElement("a");
-temp_link.href = "https://www.iana.org/time-zones";
-temp_link.innerHTML = "IANA";
-
-document.getElementById("iananame").innerHTML = temp_link.outerHTML + " name: " + ianaName;
+document.getElementById("iananame").innerHTML = "IANA name: " + ianaName;
