@@ -1,7 +1,8 @@
 name: Minify And Publish
 on:
   push:
-    branches: [ minify ]
+    branches: [ main ]
+  workflow_dispatch:
     
 permissions:
   contents: read
@@ -13,19 +14,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Checks-out your repository
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.ref }}
+      - uses: actions/checkout@v3
 
-      - name: Minify Action
-        uses: anthonyftwang/minify-action@v1.0.1
-
-      # Auto-commit to repository
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: HTML/CSS/JS Minifier
+        uses: docker://devatherock/minify-js:1.0.3
         with:
-          commit_message: Minify source code
-          branch: ${{ github.ref }}
+          add_suffix: false
           
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@1
