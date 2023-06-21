@@ -1,4 +1,4 @@
 # GetTimeZone
-A simple website to get your time zone because every other site sucks at doing that.
+A simple website to quickly get your time zone.
 
 [Link to Site](https://tz.astrea.cc)
