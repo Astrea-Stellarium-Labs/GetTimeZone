@@ -1,7 +1,13 @@
-name: Minify Workflow
+name: Minify And Publish
 on:
   push:
     branches: [ minify ]
+    
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  deployments: write
 
 jobs:
   build:
@@ -20,3 +26,12 @@ jobs:
         with:
           commit_message: Minify source code
           branch: ${{ github.ref }}
+          
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: tz
+          directory: .
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
