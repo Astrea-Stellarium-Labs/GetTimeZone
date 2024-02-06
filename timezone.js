@@ -9,7 +9,9 @@ const tz = (type) => {
         .find((m) => m.type === "timeZoneName");
     return tzName.value;
 }
-const elem = document.getElementById
+const elem = (id) => {
+    return document.getElementById(id);
+}
 
 elem("timezone").innerText = "Your time zone is: " + tz("short")
 elem("fullname").innerText = "Full name: " + tz("long")
